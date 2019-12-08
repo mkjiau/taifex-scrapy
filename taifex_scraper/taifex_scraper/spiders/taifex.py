@@ -33,22 +33,24 @@ class TaifexSpider(Spider):
     def start_requests(self):
         yield Request(url='https://www.taifex.com.tw/cht/3/dlPcRatioDown', 
                                     method='POST', 
-                                    callback=self.cb,
+                                    callback=self.parse_data,
                                     body=urllib.parse.urlencode(data, doseq=True))
 
     
-    def cb(self, response):
+    def parse_data(self, response):
         # print(response.text.replace(',\r\n','\r\n'))
 
-        items = []
         df = pd.read_csv(io.StringIO(response.text.replace(',\r\n','\r\n')))
 
-        for index, row in df.iterrows():
-            print(row['日期'], row['買權未平倉量'])
-            item = TaifexScraperItem()
-            item['date'] = row['日期']
-            item['oi'] = row['買權未平倉量']
-            # yield item
-            items.append(item)
+        # items = []
+        # for index, row in df.iterrows():
+        #     print(row['日期'], row['買權未平倉量'])
+        #     item = TaifexScraperItem()
+        #     item['date'] = row['日期']
+        #     item['oi'] = row['買權未平倉量']
+        #     # yield item
+        #     items.append(item)
+
+        items = df.to_dict(orient='records')
         
         return items

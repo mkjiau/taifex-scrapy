@@ -35,6 +35,8 @@ w3lib = "==1.19.0"
 zope-interface = "==4.6.0"
 pywin32 = "==227"
 pandas = "*"
+requests = "*"
+influxdb = "*"
 
 [requires]
 python_version = "3.6"

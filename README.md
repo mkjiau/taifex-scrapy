@@ -16,11 +16,11 @@ CMD> conda activate python36
 
 ##### Create and activate a virtual environment.
 ```
-(base) CMD> pipenv shell
+(python36) CMD> pipenv shell
 ```
 ##### Install all dependencies.
 ```
-(taifex-scrapy) (base) CMD> pipenv install
+(taifex-scrapy) (python36) CMD> pipenv install
 ```
 
 

@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "6aa9af11b4ffdf792409d86644611b6b6eea3866539fb4b029b82ade4c4cb4bd"
+            "sha256": "0b26f8353c6e431c1a200faa340321151a869eb58f36a8bbbb9b14fbf5c912d1"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -377,6 +377,10 @@
             ],
             "index": "pypi",
             "version": "==1.5.1"
+        },
+        "scrapyd-client": {
+            "git": "ssh://git@github.com/scrapy/scrapyd-client.git",
+            "ref": "4d839039ccd7b84997ba3fd533df313701b5ab68"
         },
         "service-identity": {
             "hashes": [

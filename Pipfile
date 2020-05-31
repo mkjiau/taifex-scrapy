@@ -37,6 +37,7 @@ pywin32 = "==227"
 pandas = "*"
 requests = "*"
 influxdb = "*"
+scrapyd-client = {git = "ssh://git@github.com/scrapy/scrapyd-client.git"}
 
 [requires]
 python_version = "3.6"

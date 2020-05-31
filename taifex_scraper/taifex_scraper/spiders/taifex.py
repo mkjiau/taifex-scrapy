@@ -11,7 +11,7 @@ from taifex_scraper.items import *
 
 
 my_bias_day = 0
-tx_contract_month = "201912"
+tx_contract_month = "202006"
 
 start_date = datetime.datetime.today() - timedelta(days=30) - timedelta(days=my_bias_day)
 end_date = datetime.datetime.today() - timedelta(days=my_bias_day)
@@ -30,15 +30,18 @@ class TaifexSpider(Spider):
     #     yield FormRequest("https://www.taifex.com.tw/cht/3/dlPcRatioDown",
     #                                formdata=data,
     #                                callback=self.cb)
+    # def start_requests(self):
+    #     yield Request(url='https://www.taifex.com.tw/cht/3/dlPcRatioDown', 
+    #                                 method='POST', 
+    #                                 callback=self.parse_data,
+    #                                 body=urllib.parse.urlencode(data, doseq=True))
     def start_requests(self):
-        yield Request(url='https://www.taifex.com.tw/cht/3/dlPcRatioDown', 
+        return [Request(url='https://www.taifex.com.tw/cht/3/dlPcRatioDown', 
                                     method='POST', 
                                     callback=self.parse_data,
-                                    body=urllib.parse.urlencode(data, doseq=True))
-
+                                    body=urllib.parse.urlencode(data, doseq=True))]
     
     def parse_data(self, response):
-        # print(response.text.replace(',\r\n','\r\n'))
 
         df = pd.read_csv(io.StringIO(response.text.replace(',\r\n','\r\n')))
 

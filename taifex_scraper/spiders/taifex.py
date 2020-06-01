@@ -8,6 +8,7 @@ import urllib
 import pandas as pd
 import io
 from taifex_scraper.items import *
+from ..utils import first_date_of_month, last_date_of_month
 
 
 my_bias_day = 0
@@ -34,12 +35,22 @@ class TaifexSpider(Spider):
     #     yield Request(url='https://www.taifex.com.tw/cht/3/dlPcRatioDown', 
     #                                 method='POST', 
     #                                 callback=self.parse_data,
+    #                                 headers={'Content-Type': 'application/x-www-form-urlencoded'},
     #                                 body=urllib.parse.urlencode(data, doseq=True))
     def start_requests(self):
-        return [Request(url='https://www.taifex.com.tw/cht/3/dlPcRatioDown', 
-                                    method='POST', 
-                                    callback=self.parse_data,
-                                    body=urllib.parse.urlencode(data, doseq=True))]
+        month_reqs = []
+        for m in pd.date_range('2000/1','2010/1', freq='MS').strftime("%Y/%m").tolist():
+            data2 = {
+                'queryStartDate': first_date_of_month(m).strftime('%Y/%m/%d'), # '2019/03/20'
+                'queryEndDate': last_date_of_month(m).strftime('%Y/%m/%d')      # '2019/04/19'
+            }
+            req = Request(url='https://www.taifex.com.tw/cht/3/dlPcRatioDown', 
+                            method='POST', 
+                            callback=self.parse_data,
+                            headers={'Content-Type': 'application/x-www-form-urlencoded'},
+                            body=urllib.parse.urlencode(data2, doseq=True))
+            month_reqs.append(req)
+        return month_reqs
     
     def parse_data(self, response):
 

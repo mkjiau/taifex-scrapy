@@ -38,8 +38,9 @@ class TaifexSpider(Spider):
     #                                 headers={'Content-Type': 'application/x-www-form-urlencoded'},
     #                                 body=urllib.parse.urlencode(data, doseq=True))
     def start_requests(self):
+        print(self.arg1) # scrapy crawl taifex -a arg1=my-string-1
         month_reqs = []
-        for m in pd.date_range('2000/1','2010/1', freq='MS').strftime("%Y/%m").tolist():
+        for m in pd.date_range('2010/1','2010/1', freq='MS').strftime("%Y/%m").tolist():
             data2 = {
                 'queryStartDate': first_date_of_month(m).strftime('%Y/%m/%d'), # '2019/03/20'
                 'queryEndDate': last_date_of_month(m).strftime('%Y/%m/%d')      # '2019/04/19'

@@ -8,7 +8,7 @@ build/
 project.egg-info/
 setup.py
 
-
+*.pid
 
 
 # https://github.com/github/gitignore/blob/master/Python.gitignore

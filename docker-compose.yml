@@ -1,29 +1,8 @@
 scrapyd:
-  image: vimagick/scrapyd
+  image: my-scrapyd-cron
   ports:
     - "6800:6800"
   volumes:
-    - ./data:/var/lib/scrapyd
-    - /usr/local/lib/python2.7/dist-packages
-    # - .:/app
-  # entrypoint: bash -c "set -xe && pip install pipenv" # && cd /app && ls && pipenv install --system"
-  restart: always
-  # command: bash -c "set -xe && pip install pipenv" # && cd /app && ls && pipenv install --system"
-
-scrapy:
-  image: vimagick/scrapyd
-  command: bash
-  volumes:
+    # - ./data:/var/lib/scrapyd
     - .:/code
-  working_dir: /code
-  restart: always
-
-scrapyrt:
-  image: vimagick/scrapyd
-  command: scrapyrt -i 0.0.0.0 -p 9080
-  ports:
-    - "9080:9080"
-  volumes:
-    - .:/code
-  working_dir: /code
   restart: always

@@ -6,3 +6,13 @@ scrapyd:
     # - ./data:/var/lib/scrapyd
     - .:/code
   restart: always
+
+# scrapyd-dev:
+#   image: my-scrapyd-cron
+#   ports:
+#     - "6801:6800"
+#   volumes:
+#     # - ./data:/var/lib/scrapyd
+#     - .:/code
+#   restart: always
+#   command: scrapyd

@@ -22,8 +22,8 @@ data = {
     'queryEndDate': end_date.strftime('%Y/%m/%d')      # '2019/04/19'
 }
 
-class TaifexSpider(Spider):
-    name = 'taifex'
+class DlpcratiodownSpider(Spider):
+    name = 'dlPcRatioDown'
     allowed_domains = ['taifex.com.tw']
     # start_urls = [SEARCH_QUERY]
 
@@ -38,7 +38,7 @@ class TaifexSpider(Spider):
     #                                 headers={'Content-Type': 'application/x-www-form-urlencoded'},
     #                                 body=urllib.parse.urlencode(data, doseq=True))
     def start_requests(self):
-        print(self.arg1) # scrapy crawl taifex -a arg1=my-string-1
+        # print(self.arg1) # scrapy crawl taifex -a arg1=my-string-1
         month_reqs = []
         for m in pd.date_range('2010/1','2010/1', freq='MS').strftime("%Y/%m").tolist():
             data2 = {

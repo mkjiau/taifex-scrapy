@@ -1,4 +1,4 @@
-# Trading InfluxData Sandbox (working with https://github.com/mkjiau/taifex-scrapy)
+# TICK Sandbox
 
 This repo is a quick way to get the entire TICK Stack spun up and working together. It uses [Docker](https://www.docker.com/) to spin up the full TICK stack in a connected fashion. This is heavily tested on MacOS and should mostly work on Linux and Windows.
 

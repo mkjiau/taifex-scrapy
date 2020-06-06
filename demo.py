@@ -7,6 +7,7 @@ import datetime
 from datetime import timedelta
 from calendar import monthrange
 import pytz
+from influxdb import line_protocol
 
 def first_date_of_month(s):
     dt = datetime.datetime.strptime(s, '%Y/%m') # '2020/2'
@@ -32,8 +33,27 @@ print(last_date_of_month('2020/5',nofuture=False))
 print(last_date_of_month('2020/5',nofuture=True))
 
 # print(pd.date_range('2014/10','2016/1', freq='MS').strftime("%Y/%m").tolist())
+print(pd.date_range('2014/9/25','2014/10/5', freq='D').strftime("%Y/%m/%d").tolist())
 
 # for m in pd.date_range('2014/10','2016/1', freq='MS').strftime("%Y/%m").tolist():
 #     print(m)
 
-print(datetime.datetime.strptime('2020/5/3', '%Y/%m/%d').replace(hour=15, tzinfo=pytz.timezone('Asia/Taipei')))
+# aaa = datetime.datetime.strptime('2020/5/3', '%Y/%m/%d').replace(hour=15, tzinfo=pytz.timezone('Asia/Taipei'))
+# print(aaa.isoformat())
+
+
+# data = {
+#     "tags": {},
+#     "points": [
+#         {
+#             "measurement": 'measurement',
+#             "fields": { 'f1': 'v1' },
+#             # "time": '2020/5/3'
+#             "time": aaa.isoformat()
+#         }
+#     ]
+# }
+# bbb = line_protocol.make_lines(data)
+# print(bbb)
+
+print(datetime.datetime.now().strftime('%Y/%m/%d'))

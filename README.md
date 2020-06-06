@@ -38,6 +38,32 @@ CMD> C:\Users\{YOUR_NAME}\.virtualenvs\taifex-scrapy-lMUq6lYm\Scripts\activate
 Data will be stored in `json` file located at `data/taifex.json`.
 
 
+## Scrapyd
+```
+docker run --rm --name aaaa -p 6800:6800  my-scrapyd-a
+
+scrapyd-deploy -l
+scrapyd-deploy
+
+scrapyd-client projects
+scrapyd-client spiders -p taifex_scraper
+
+scrapyd-client schedule -p taifex_scraper taifex
+
+#scrapyd-client schedule -p taifex_scraper \* 
+#scrapyd-client schedule -h
+```
+
+## ScrapyRT
+```
+# https://scrapyrt.readthedocs.io/en/stable/api.html#scrapyrt-http-api
+curl -v "http://localhost:9080/crawl.json?spider_name=taifex&start_requests=true"
+```
 
 ## References
 https://github.com/mkjiau/IMDB-Scraper
+
+
+
+
+

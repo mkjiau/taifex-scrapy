@@ -19,4 +19,10 @@ class TaifexScraperPipeline(object):
             requests.post('http://host.docker.internal:9001/telegraf', data=data.encode('utf-8'))
             # requests.post('http://localhost:9001/telegraf', data=data.encode('utf-8'))
             return item
+
+        if spider.name == 'dlFutDataDown':
+            data = make_influx_line('dlFutDataDown', {}, item, setReleasTime(item['交易日期']))
+            requests.post('http://host.docker.internal:9001/telegraf', data=data.encode('utf-8'))
+            return item
+
         return {}

@@ -38,7 +38,7 @@ zope-interface = "==4.6.0"
 pandas = "==1.0.4"
 requests = "==2.23.0"
 influxdb = "==5.3.0"
-scrapyd-client = "==1.1.0"
+scrapyd-client = "==1.2.0a1"
 python-dotenv = "==0.13.0"
 
 [requires]

@@ -4,6 +4,8 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+pylint = "==2.5.3"
+pywin32 = "==227"
 
 [packages]
 asn1crypto = "==0.24.0"
@@ -33,11 +35,11 @@ six = "==1.12.0"
 twisted = "==18.9.0"
 w3lib = "==1.19.0"
 zope-interface = "==4.6.0"
-pywin32 = "==227"
-pandas = "*"
-requests = "*"
-influxdb = "*"
-scrapyd-client = {git = "ssh://git@github.com/scrapy/scrapyd-client.git"}
+pandas = "==1.0.4"
+requests = "==2.23.0"
+influxdb = "==5.3.0"
+scrapyd-client = "==1.1.0"
+python-dotenv = "==0.13.0"
 
 [requires]
 python_version = "3.6"

@@ -1,4 +1,15 @@
 # -*- coding: utf-8 -*-
+from dotenv import load_dotenv
+from pathlib import Path
+import os
+
+# dotenv
+# set PYTHON_ENV=production && scrapy crawl dlPcRatioDown  
+if os.environ.get("PYTHON_ENV").strip() == "production":
+    env_path = Path('.') / '.env.production'
+else:
+    env_path = Path('.') / '.env'
+load_dotenv(dotenv_path=env_path)
 
 BOT_NAME = 'taifex_scraper'
 

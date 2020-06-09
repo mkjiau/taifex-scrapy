@@ -3,6 +3,7 @@ import requests
 import datetime
 import pytz
 from .utils import make_influx_line
+import os
 
 # As offical data from taifex is released at 15:00 afterwards
 # we select 15:00 Taipei time as data point's timestamp.
@@ -15,8 +16,7 @@ class TaifexScraperPipeline(object):
         if spider.name == 'dlPcRatioDown':
             # data = make_influx_line('dlPcRatioDown', {}, item, item['日期'])
             data = make_influx_line('dlPcRatioDown', {}, item, setReleasTime(item['日期']))
-            requests.post('http://host.docker.internal:9001/telegraf', data=data.encode('utf-8'))
-            # requests.post('http://localhost:9001/telegraf', data=data.encode('utf-8'))
+            requests.post(os.getenv("TELEGRAF_URL"), data=data.encode('utf-8'))
             return item
 
         if spider.name == 'dlFutDataDown':
@@ -43,8 +43,7 @@ class TaifexScraperPipeline(object):
                 "價差對單式委託成交量": item["價差對單式委託成交量"]
             }
             data = make_influx_line('dlFutDataDown', tag_set, field_set, setReleasTime(item['交易日期']))
-            requests.post('http://host.docker.internal:9001/telegraf', data=data.encode('utf-8'))
-            # requests.post('http://localhost:9001/telegraf', data=data.encode('utf-8'))
+            requests.post(os.getenv("TELEGRAF_URL"), data=data.encode('utf-8'))
             return item
 
         return {}

@@ -5,7 +5,9 @@ import os
 
 # dotenv
 # set PYTHON_ENV=production && scrapy crawl dlPcRatioDown  
-if os.environ.get("PYTHON_ENV").strip() == "production":
+PYTHON_ENV = '' if os.environ.get("PYTHON_ENV") == None else os.environ.get("PYTHON_ENV")
+PYTHON_ENV = PYTHON_ENV.strip()
+if PYTHON_ENV == "production":
     env_path = Path('.') / '.env.production'
 else:
     env_path = Path('.') / '.env'

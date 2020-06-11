@@ -66,6 +66,15 @@ pipenv lock --requirements > requirements.txt
 # delete the line about zope.interface==5.1.0; ....
 ```
 
+## Go Online 
+The crawling is scheduled to run by the cron job. The crawled data is persisted in InfluxDB, and we can visually view them through Chronograf web of TICK stack.
+```
+cd tick-sandbox
+sandbox up
+cd ..
+docker-compose up -d
+```
+
 ## References
 https://github.com/mkjiau/IMDB-Scraper
 

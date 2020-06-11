@@ -1,16 +1,22 @@
 scrapyd:
-  image: my-scrapyd-cron
+  # image: my-scrapyd-cron
+  build: .
   ports:
     - "6800:6800"
+  environment:
+    - PYTHON_ENV=production
   volumes:
     # - ./data:/var/lib/scrapyd
     - .:/code
   restart: always
 
 # scrapyd-dev:
-#   image: my-scrapyd-cron
+#   # image: my-scrapyd-cron
+#   build: .
 #   ports:
 #     - "6801:6800"
+#   environment:
+#     - PYTHON_ENV=production
 #   volumes:
 #     # - ./data:/var/lib/scrapyd
 #     - .:/code

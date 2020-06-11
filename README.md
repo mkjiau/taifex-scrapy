@@ -60,6 +60,12 @@ scrapyd-client schedule -p taifex_scraper taifex
 curl -v "http://localhost:9080/crawl.json?spider_name=taifex&start_requests=true"
 ```
 
+## Use Pipfile to yield requirements.txt
+```
+pipenv lock --requirements > requirements.txt
+# delete the line about zope.interface==5.1.0; ....
+```
+
 ## References
 https://github.com/mkjiau/IMDB-Scraper
 

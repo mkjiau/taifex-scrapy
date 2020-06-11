@@ -64,7 +64,7 @@ requests==2.23.0
 
 scrapy==1.5.1
 
-scrapyd-client==1.1.0
+scrapyd-client==1.2.0a1
 
 service-identity==18.1.0
 

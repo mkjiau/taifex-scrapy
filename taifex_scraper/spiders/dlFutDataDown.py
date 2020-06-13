@@ -10,6 +10,27 @@ import io
 from ..utils import first_date_of_month, last_date_of_month
 
 class DlfutdatadownSpider(Spider):
+    """The spider of https://www.taifex.com.tw/cht/3/dlFutDataDown
+
+    Parameters:
+        selected_date (str): "yyyy/mm/dd"
+        start_month (str): "yyyy/mm", and it should be set with end_month
+        end_month (str): "yyyy/mm", and it should be set with start_month
+        commodity_id (str): "all", "TX", "MTX", "TE", "TF", etc. For more, see the view page.
+
+    The view page: 
+    https://www.taifex.com.tw/cht/3/dlFutDailyMarketView
+
+    Use by scrapy cli
+    # scrapy crawl -a start_month="2010/12" -a end_month="2011/3" -a commodity_id="TE" dlFutDataDown
+    # scrapy crawl -a selected_date="2020/06/02" dlFutDataDown
+
+    Use by scrapyd-client
+    # scrapyd-client schedule --arg start_month="2010/12" --arg end_month="2011/3" -p taifex_scraper dlFutDataDown
+    # scrapyd-client schedule --arg selected_date="2020/06/02" -p taifex_scraper dlFutDataDown
+
+    """
+
     name = 'dlFutDataDown'
     allowed_domains = ['taifex.com.tw']
 
@@ -19,13 +40,10 @@ class DlfutdatadownSpider(Spider):
     commodity_id = 'TX'
 
     def start_requests(self):
-        # scrapy crawl -a start_month="2010/12" -a end_month="2011/3" -a commodity_id="TE" dlFutDataDown
-        # scrapyd-client schedule --arg start_month="2010/12" --arg end_month="2011/3" -p taifex_scraper dlFutDataDown
+        
         if self.start_month != None and self.end_month != None:
             return self.__month_range_requests(self.start_month, self.end_month, self.commodity_id)
 
-        # scrapy crawl -a selected_date="2020/06/02" dlFutDataDown
-        # scrapyd-client schedule --arg selected_date="2020/06/02" -p taifex_scraper dlFutDataDown
         return self.__selected_date_request(self.selected_date, self.commodity_id)
     
     def parse_data(self, response):
@@ -78,7 +96,7 @@ class DlfutdatadownSpider(Spider):
         data = {
             'queryStartDate': selected_date, # '2020/6/3'
             'queryEndDate': selected_date,   # '2019/6/3'
-            'commodity_id': commodity_id, # 'all', 'TX', 'MTX', 'TE', 'TF', etc. see https://www.taifex.com.tw/cht/3/dlFutDailyMarketView
+            'commodity_id': commodity_id,
             'down_type': 1
         }
         req = Request(url='https://www.taifex.com.tw/cht/3/dlFutDataDown', 

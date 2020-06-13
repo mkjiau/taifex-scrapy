@@ -18,15 +18,15 @@ class DlpcratiodownSpider(Spider):
         end_month (str): "yyyy/mm", and it should be set with start_month
 
     The view page: 
-    https://www.taifex.com.tw/cht/3/dlPcRatio
+        https://www.taifex.com.tw/cht/3/dlPcRatio
 
-    Use by scrapy cli
-    # scrapy crawl -a start_month="2010/12" -a end_month="2011/3" dlPcRatioDown
-    # scrapy crawl -a selected_date="2020/06/02" dlPcRatioDown
+    Use by scrapy cli:
+        # scrapy crawl -a start_month="2010/12" -a end_month="2011/3" dlPcRatioDown
+        # scrapy crawl -a selected_date="2020/06/02" dlPcRatioDown
 
-    Use by scrapyd-client
-    # scrapyd-client schedule --arg start_month="2010/12" --arg end_month="2011/3" -p taifex_scraper dlPcRatioDown
-    # scrapyd-client schedule --arg selected_date="2020/06/02" -p taifex_scraper dlPcRatioDown
+    Use by scrapyd-client:
+        # scrapyd-client schedule --arg start_month="2010/12" --arg end_month="2011/3" -p taifex_scraper dlPcRatioDown
+        # scrapyd-client schedule --arg selected_date="2020/06/02" -p taifex_scraper dlPcRatioDown
 
     """
 

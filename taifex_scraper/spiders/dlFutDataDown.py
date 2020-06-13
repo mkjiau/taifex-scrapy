@@ -19,15 +19,15 @@ class DlfutdatadownSpider(Spider):
         commodity_id (str): "all", "TX", "MTX", "TE", "TF", etc. For more, see the view page.
 
     The view page: 
-    https://www.taifex.com.tw/cht/3/dlFutDailyMarketView
+        https://www.taifex.com.tw/cht/3/dlFutDailyMarketView
 
-    Use by scrapy cli
-    # scrapy crawl -a start_month="2010/12" -a end_month="2011/3" -a commodity_id="TE" dlFutDataDown
-    # scrapy crawl -a selected_date="2020/06/02" dlFutDataDown
+    Use by scrapy cli:
+        # scrapy crawl -a start_month="2010/12" -a end_month="2011/3" -a commodity_id="TE" dlFutDataDown
+        # scrapy crawl -a selected_date="2020/06/02" dlFutDataDown
 
-    Use by scrapyd-client
-    # scrapyd-client schedule --arg start_month="2010/12" --arg end_month="2011/3" -p taifex_scraper dlFutDataDown
-    # scrapyd-client schedule --arg selected_date="2020/06/02" -p taifex_scraper dlFutDataDown
+    Use by scrapyd-client:
+        # scrapyd-client schedule --arg start_month="2010/12" --arg end_month="2011/3" -p taifex_scraper dlFutDataDown
+        # scrapyd-client schedule --arg selected_date="2020/06/02" -p taifex_scraper dlFutDataDown
 
     """
 

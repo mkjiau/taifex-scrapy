@@ -10,6 +10,26 @@ import io
 from ..utils import first_date_of_month, last_date_of_month
 
 class DlpcratiodownSpider(Spider):
+    """The spider of https://www.taifex.com.tw/cht/3/dlPcRatioDown
+
+    Parameters:
+        selected_date (str): "yyyy/mm/dd"
+        start_month (str): "yyyy/mm", and it should be set with end_month
+        end_month (str): "yyyy/mm", and it should be set with start_month
+
+    The view page: 
+    https://www.taifex.com.tw/cht/3/dlPcRatio
+
+    Use by scrapy cli
+    # scrapy crawl -a start_month="2010/12" -a end_month="2011/3" dlPcRatioDown
+    # scrapy crawl -a selected_date="2020/06/02" dlPcRatioDown
+
+    Use by scrapyd-client
+    # scrapyd-client schedule --arg start_month="2010/12" --arg end_month="2011/3" -p taifex_scraper dlPcRatioDown
+    # scrapyd-client schedule --arg selected_date="2020/06/02" -p taifex_scraper dlPcRatioDown
+
+    """
+
     name = 'dlPcRatioDown'
     allowed_domains = ['taifex.com.tw']
     
@@ -18,13 +38,9 @@ class DlpcratiodownSpider(Spider):
     end_month = None
 
     def start_requests(self):
-        # scrapy crawl -a start_month="2010/12" -a end_month="2011/3" dlPcRatioDown
-        # scrapyd-client schedule --arg start_month="2010/12" --arg end_month="2011/3" -p taifex_scraper dlPcRatioDown
         if self.start_month != None and self.end_month != None:
             return self.__month_range_requests(self.start_month, self.end_month)
 
-        # scrapy crawl -a selected_date="2020/06/02" dlPcRatioDown
-        # scrapyd-client schedule --arg selected_date="2020/06/02" -p taifex_scraper dlPcRatioDown
         return self.__selected_date_request(self.selected_date)
     
     def parse_data(self, response):

@@ -27,9 +27,17 @@ echo "The project deployed and the following spiders ready"
 scrapyd-client spiders -p taifex_scraper
 
 echo "starting cron to execute scrapy schedules ..."
-# echo -e "\n" >> /etc/cron.d/hello-cron
-# echo -e "* * * * * root cd /code && /usr/local/bin/scrapyd-client schedule -p taifex_scraper taifex" >> /etc/cron.d/hello-cron
-echo -e "* * * * * root cd /code && /usr/local/bin/scrapyd-client schedule -p taifex_scraper dlPcRatioDown" >> /etc/cron.d/scrapy-cron
+if [[ -f "/etc/cron.d/scrapy-cron" ]]; then
+  echo "/etc/cron.d/scrapy-cron exists"
+  rm -fr /etc/cron.d/scrapy-cron
+  echo "/etc/cron.d/scrapy-cron removed"
+fi
+# echo -e "*/2 * * * * root cd /code && /usr/local/bin/scrapyd-client schedule -p taifex_scraper dlPcRatioDown" >> /etc/cron.d/scrapy-cron
+
+# At 17:00 (GMT+8) on every day-of-week from Monday through Friday.
+echo -e "0 9 * * 1-5 root cd /code && /usr/local/bin/scrapyd-client schedule -p taifex_scraper dlPcRatioDown" >> /etc/cron.d/scrapy-cron
+echo -e "0 9 * * 1-5 root cd /code && /usr/local/bin/scrapyd-client schedule -p taifex_scraper dlFutDataDown" >> /etc/cron.d/scrapy-cron
+
 chmod 0644 /etc/cron.d/scrapy-cron
 service cron start
 

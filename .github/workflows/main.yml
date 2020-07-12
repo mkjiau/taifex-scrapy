@@ -1,12 +1,11 @@
 # This is a basic workflow to help you get started with Actions
-
-name: CI
+name: CI Docker Image Build
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
   push:
-    branches: [ master, mkjiau-patch-1 ]
+    branches: [ master ]
     tags: [ 'v[0-9]+.[0-9]+.[0-9]+*' ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -16,7 +15,7 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-#     # Steps represent a sequence of tasks that will be executed as part of the job
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - name: Checkout code for later image build
@@ -57,7 +56,7 @@ jobs:
 #         add_git_labels: # optional
 #         # Whether to push the image
 #         push: # optional, default is true
-    - name: Run a multi-line script
+    - name: Job completed
       run: |
         echo Docker build completed, 
         echo Image push completed.
